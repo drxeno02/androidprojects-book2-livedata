@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="ContentDescription">
+
+    <!-- icon -->
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:src="@drawable/circle"
+        android:layout_width="@dimen/scaling_36"
+        android:layout_height="@dimen/scaling_36" />
+
+    <LinearLayout
+        android:id="@+id/ll_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/iv_check_mark"
+        android:layout_toLeftOf="@+id/iv_check_mark"
+        android:layout_toEndOf="@id/iv_icon"
+        android:layout_toRightOf="@id/iv_icon"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/scaling_15"
+        android:paddingLeft="@dimen/scaling_15"
+        android:paddingEnd="@dimen/scaling_10"
+        android:paddingRight="@dimen/scaling_10">
+
+        <!-- name -->
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_16" />
+
+        <!-- email -->
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_16" />
+
+    </LinearLayout>
+
+    <!-- edit info -->
+    <ImageView
+        android:id="@+id/iv_edit"
+        android:layout_width="@dimen/scaling_36"
+        android:layout_height="@dimen/scaling_36"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/scaling_20"
+        android:layout_marginRight="@dimen/scaling_20"
+        android:src="@drawable/green_check_mark_icon" />
+
+</RelativeLayout>

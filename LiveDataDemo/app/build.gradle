@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+// top-level build file to help synchronize library versions
+ext {
+    supportLib = "28.0.0"
+    roomDb = "1.1.1"
+}
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.livedatademo"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // test units
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // room components
+    api "android.arch.persistence.room:runtime:${roomDb}" // room database
+    annotationProcessor "android.arch.persistence.room:compiler:${roomDb}" // room database
+    api "android.arch.lifecycle:livedata:${roomDb}" // room lifecycle components
+    api "android.arch.lifecycle:extensions:${roomDb}" // room lifecycle components
+
+    // android support
+    //noinspection GradleCompatible
+    api "com.android.support:appcompat-v7:${supportLib}"
+    api "com.android.support:recyclerview-v7:${supportLib}"
+
+}

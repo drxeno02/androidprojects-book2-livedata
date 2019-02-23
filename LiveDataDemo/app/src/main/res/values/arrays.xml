@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- drawer menu options -->
+    <string-array name="array_menu_options">
+        <item>@string/select_favorite_color</item>
+        <item>@string/red</item>
+        <item>@string/pink</item>
+        <item>@string/purple</item>
+        <item>@string/indigo</item>
+        <item>@string/blue</item>
+        <item>@string/cyan</item>
+        <item>@string/teal</item>
+        <item>@string/green</item>
+        <item>@string/yellow</item>
+        <item>@string/orange</item>
+        <item>@string/grey</item>
+    </string-array>
+
+</resources>

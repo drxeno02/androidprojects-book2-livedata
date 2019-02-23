@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">LiveDataDemo</string>
+
+    <!-- form -->
+    <string name="favorite_color">Favorite Color</string>
+    <string name="save">Save</string>
+    <string name="save_information">Save Information</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="info">Info</string>
+
+    <!-- dialog -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="missing_information">Missing Information</string>
+    <string name="must_fill_out_information">Must fill out all information to save data.</string>
+    <string name="success">Success!</string>
+    <string name="successfully_saved_information">Successfully saved information.</string>
+
+    <!-- favorite color options -->
+    <string name="select_favorite_color">Select Favorite Color</string>
+    <string name="red">Red</string>
+    <string name="pink">Pink</string>
+    <string name="purple">Purple</string>
+    <string name="indigo">Indigo</string>
+    <string name="blue">Blue</string>
+    <string name="cyan">Cyan</string>
+    <string name="teal">Teal</string>
+    <string name="green">Green</string>
+    <string name="yellow">Yellow</string>
+    <string name="orange">Orange</string>
+    <string name="grey">Grey</string>
+
+</resources>
