@@ -1,118 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <!-- header -->
-    <include
-        android:id="@+id/header"
-        layout="@layout/item_header"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!-- name section -->
-    <include
-        android:id="@+id/item_name"
-        layout="@layout/item_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/scaling_30" />
+        <!-- header -->
+        <include
+            android:id="@+id/header"
+            layout="@layout/item_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <!-- divider -->
-    <View
-        android:id="@+id/v_divider_a"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginStart="@dimen/scaling_20"
-        android:layout_marginLeft="@dimen/scaling_20"
-        android:layout_marginEnd="@dimen/scaling_20"
-        android:layout_marginRight="@dimen/scaling_20"
-        android:background="@color/md_grey_600" />
-
-    <!-- email section -->
-    <include
-        android:id="@+id/item_email"
-        layout="@layout/item_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/scaling_40" />
-
-    <!-- divider -->
-    <View
-        android:id="@+id/v_divider_b"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginStart="@dimen/scaling_20"
-        android:layout_marginLeft="@dimen/scaling_20"
-        android:layout_marginEnd="@dimen/scaling_20"
-        android:layout_marginRight="@dimen/scaling_20"
-        android:background="@color/md_grey_600" />
-
-    <!-- favorite color label -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/scaling_20"
-        android:layout_marginLeft="@dimen/scaling_20"
-        android:layout_marginTop="@dimen/scaling_40"
-        android:text="@string/favorite_color"
-        android:textColor="@color/md_grey_600"
-        android:textSize="@dimen/font_size_16" />
-
-    <!-- favorite color section -->
-    <Spinner
-        android:id="@+id/spnr_favorite_color"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/scaling_20"
-        android:layout_marginLeft="@dimen/scaling_20"
-        android:layout_marginTop="@dimen/scaling_10"
-        android:popupBackground="@color/white"
-        android:scrollbars="none"
-        android:spinnerMode="dropdown" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/scaling_60">
-
-        <!-- save button -->
-        <TextView
-            android:id="@+id/tv_view_data"
-            android:layout_width="@dimen/scaling_120"
+        <!-- name section -->
+        <include
+            android:id="@+id/item_name"
+            layout="@layout/item_profile"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/scaling_10"
-            android:layout_marginRight="@dimen/scaling_10"
-            android:layout_toStartOf="@+id/tv_save"
-            android:layout_toLeftOf="@+id/tv_save"
-            android:background="@drawable/pill_teal"
-            android:gravity="center"
-            android:padding="@dimen/scaling_10"
-            android:text="@string/view_data"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_size_18" />
+            android:layout_marginTop="@dimen/scaling_30" />
 
-        <!-- save button -->
-        <TextView
-            android:id="@+id/tv_save"
-            android:layout_width="@dimen/scaling_120"
+        <!-- divider -->
+        <View
+            android:id="@+id/v_divider_a"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="@dimen/scaling_20"
+            android:layout_marginLeft="@dimen/scaling_20"
+            android:layout_marginEnd="@dimen/scaling_20"
+            android:layout_marginRight="@dimen/scaling_20"
+            android:background="@color/md_grey_600" />
+
+        <!-- email section -->
+        <include
+            android:id="@+id/item_email"
+            layout="@layout/item_profile"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/scaling_10"
-            android:layout_marginRight="@dimen/scaling_10"
-            android:background="@drawable/pill_grey"
-            android:gravity="center"
-            android:padding="@dimen/scaling_10"
-            android:text="@string/save"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_size_18" />
+            android:layout_marginTop="@dimen/scaling_40" />
 
-    </RelativeLayout>
+        <!-- divider -->
+        <View
+            android:id="@+id/v_divider_b"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="@dimen/scaling_20"
+            android:layout_marginLeft="@dimen/scaling_20"
+            android:layout_marginEnd="@dimen/scaling_20"
+            android:layout_marginRight="@dimen/scaling_20"
+            android:background="@color/md_grey_600" />
 
-</LinearLayout>
+        <!-- favorite color label -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/scaling_20"
+            android:layout_marginLeft="@dimen/scaling_20"
+            android:layout_marginTop="@dimen/scaling_40"
+            android:text="@string/favorite_color"
+            android:textColor="@color/md_grey_600"
+            android:textSize="@dimen/font_size_16" />
+
+        <!-- favorite color section -->
+        <Spinner
+            android:id="@+id/spnr_favorite_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/scaling_20"
+            android:layout_marginLeft="@dimen/scaling_20"
+            android:layout_marginTop="@dimen/scaling_10"
+            android:popupBackground="@color/white"
+            android:scrollbars="none"
+            android:spinnerMode="dropdown" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/scaling_60">
+
+            <!-- save button -->
+            <TextView
+                android:id="@+id/tv_view_data"
+                android:layout_width="@dimen/scaling_120"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/scaling_10"
+                android:layout_marginRight="@dimen/scaling_10"
+                android:layout_toStartOf="@+id/tv_save"
+                android:layout_toLeftOf="@+id/tv_save"
+                android:background="@drawable/pill_teal"
+                android:gravity="center"
+                android:padding="@dimen/scaling_10"
+                android:text="@string/view_data"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_18" />
+
+            <!-- save button -->
+            <TextView
+                android:id="@+id/tv_save"
+                android:layout_width="@dimen/scaling_120"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/scaling_10"
+                android:layout_marginRight="@dimen/scaling_10"
+                android:background="@drawable/pill_grey"
+                android:gravity="center"
+                android:padding="@dimen/scaling_10"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_18" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

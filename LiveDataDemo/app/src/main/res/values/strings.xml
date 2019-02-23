@@ -1,13 +1,17 @@
 <resources>
-    <string name="app_name">LiveDataDemo</string>
+    <string name="app_name">Live Data Demo</string>
 
     <!-- form -->
     <string name="favorite_color">Favorite Color</string>
     <string name="save">Save</string>
     <string name="save_information">Save Information</string>
+    <string name="view_information">View Information</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
-    <string name="info">Info</string>
+    <string name="view_data">View Data</string>
+    <string name="live_data_description">The information below is retrieved from our Room database.
+        We are able to witness updates LIVE by modifying any of the stored data. LiveData will notify
+        the observer of these changes so that we can update the list of information.</string>
 
     <!-- dialog -->
     <string name="yes">Yes</string>
@@ -15,8 +19,8 @@
     <string name="ok">OK</string>
     <string name="missing_information">Missing Information</string>
     <string name="must_fill_out_information">Must fill out all information to save data.</string>
-    <string name="success">Success!</string>
-    <string name="successfully_saved_information">Successfully saved information.</string>
+    <string name="success">Success</string>
+    <string name="information_successfully_saved">Information successfully saved! Click on the View Data button to see your results.</string>
 
     <!-- favorite color options -->
     <string name="select_favorite_color">Select Favorite Color</string>

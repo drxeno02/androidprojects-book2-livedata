@@ -1,62 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:ignore="ContentDescription">
 
-    <!-- icon -->
-    <ImageView
-        android:id="@+id/iv_icon"
-        android:src="@drawable/circle"
-        android:layout_width="@dimen/scaling_36"
-        android:layout_height="@dimen/scaling_36" />
-
-    <LinearLayout
-        android:id="@+id/ll_wrapper"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/iv_check_mark"
-        android:layout_toLeftOf="@+id/iv_check_mark"
-        android:layout_toEndOf="@id/iv_icon"
-        android:layout_toRightOf="@id/iv_icon"
-        android:orientation="vertical"
-        android:paddingStart="@dimen/scaling_15"
-        android:paddingLeft="@dimen/scaling_15"
-        android:paddingEnd="@dimen/scaling_10"
-        android:paddingRight="@dimen/scaling_10">
+        android:layout_marginTop="@dimen/scaling_5"
+        android:layout_marginBottom="@dimen/scaling_5">
 
-        <!-- name -->
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+        <!-- favorite color -->
+        <ImageView
+            android:id="@+id/iv_favorite_color"
+            android:layout_width="@dimen/scaling_36"
+            android:layout_height="@dimen/scaling_36"
+            android:layout_centerVertical="true"
+            android:src="@drawable/circle" />
+
+        <LinearLayout
+            android:id="@+id/ll_wrapper"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_16" />
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/iv_edit"
+            android:layout_toLeftOf="@+id/iv_edit"
+            android:layout_toEndOf="@id/iv_favorite_color"
+            android:layout_toRightOf="@id/iv_favorite_color"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/scaling_15"
+            android:paddingLeft="@dimen/scaling_15"
+            android:paddingEnd="@dimen/scaling_10"
+            android:paddingRight="@dimen/scaling_10">
 
-        <!-- email -->
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_16" />
+            <!-- name -->
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_16" />
 
-    </LinearLayout>
+            <!-- email -->
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_16" />
 
-    <!-- edit info -->
-    <ImageView
-        android:id="@+id/iv_edit"
-        android:layout_width="@dimen/scaling_36"
-        android:layout_height="@dimen/scaling_36"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="@dimen/scaling_20"
-        android:layout_marginRight="@dimen/scaling_20"
-        android:src="@drawable/green_check_mark_icon" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <!-- edit info -->
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:layout_width="@dimen/scaling_36"
+            android:layout_height="@dimen/scaling_36"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/green_check_mark_icon" />
+
+    </RelativeLayout>
+
+</FrameLayout>

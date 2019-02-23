@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <!-- header -->
@@ -25,17 +26,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/favorite_color"
+            android:text="@string/live_data_description"
             android:textColor="@color/md_grey_600"
             android:textSize="@dimen/font_size_16" />
+
+        <!-- divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_margin="@dimen/scaling_10"
+            android:background="@color/md_grey_600" />
 
         <!-- trip history list -->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/scaling_10"
             android:clipToPadding="false"
-            android:divider="@null"
             android:scrollingCache="false" />
 
     </LinearLayout>

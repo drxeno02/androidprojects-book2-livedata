@@ -1,15 +1,23 @@
 package com.example.livedatademo.utils;
 
+import android.content.Context;
+import android.os.Handler;
+import android.os.IBinder;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.inputmethod.InputMethodManager;
 
 public class Utils {
 
     // click control threshold
     private static final int CLICK_THRESHOLD = 250;
     private static long mLastClickTime;
+
+    private static final long ANIM_DURATION_SHORT_200 = 200; // milliseconds
+    private static InputMethodManager imm;
 
     /**
      * Method is used to control clicks on views. Clicking views repeatedly and quickly will
@@ -42,5 +50,40 @@ public class Utils {
     public static boolean isValidEmail(@Nullable String email) {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
                 email.substring(email.lastIndexOf(".") + 1).length() > 1;
+    }
+
+    /**
+     * Method is used to show virtual keyboard
+     *
+     * @param context Interface to global information about an application environment
+     */
+    public static void showKeyboard(@NonNull Context context) {
+        if (imm == null) {
+            imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        }
+        // toggleSoftInput is not consistent when called multiple times back to back
+        // The work around is to add a slight delay for consistently displaying soft keyboard
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            }
+        }, ANIM_DURATION_SHORT_200);
+    }
+
+    /**
+     * Method is used to hide virtual keyboard
+     *
+     * @param context Interface to global information about an application environment
+     * @param binder  Base interface for a remotable object, the core part of a lightweight remote
+     *                procedure call mechanism designed for high performance when performing
+     *                in-process and cross-process calls
+     */
+    public static void hideKeyboard(@NonNull Context context, @NonNull IBinder binder) {
+        if (imm == null) {
+            imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        }
+        imm.hideSoftInputFromWindow(binder, 0);
     }
 }

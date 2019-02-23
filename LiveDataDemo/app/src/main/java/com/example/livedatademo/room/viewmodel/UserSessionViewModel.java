@@ -5,13 +5,13 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
-
 import com.example.livedatademo.room.dao.UserSessionDao;
 import com.example.livedatademo.room.entity.UserSessionEntity;
-import com.example.livedatademo.room.repository.UserSessionRepository;
 import com.example.livedatademo.room.enums.Enum;
+import com.example.livedatademo.room.repository.UserSessionRepository;
 
 import java.util.List;
+import java.util.Random;
 
 public class UserSessionViewModel extends AndroidViewModel {
 
@@ -45,6 +45,11 @@ public class UserSessionViewModel extends AndroidViewModel {
      * @param userSessionEntity User session entity
      */
     public void insert(@NonNull UserSessionEntity userSessionEntity) {
+        // set random UID
+        // UID can be set while you are seeing all the other database values, but if you do not
+        // want to think about it, you can set it as part of the insertion method
+        Random rand = new Random();
+        userSessionEntity.setUid(rand.nextInt(99999));
         mUserSessionRepository.performDatabaseOperation(Enum.DatabaseOperation.INSERT, userSessionEntity);
     }
 

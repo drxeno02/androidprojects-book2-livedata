@@ -17,8 +17,6 @@
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/iv_check_mark"
             android:layout_toLeftOf="@+id/iv_check_mark"
-            android:layout_toEndOf="@id/iv_icon"
-            android:layout_toRightOf="@id/iv_icon"
             android:orientation="vertical"
             android:paddingStart="@dimen/scaling_15"
             android:paddingLeft="@dimen/scaling_15"

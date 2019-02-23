@@ -1,18 +1,14 @@
 package com.example.livedatademo.activity;
 
 import android.app.Activity;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,21 +19,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.livedatademo.R;
+import com.example.livedatademo.fragment.InfoFragment;
 import com.example.livedatademo.room.entity.UserSessionEntity;
 import com.example.livedatademo.room.viewmodel.UserSessionViewModel;
 import com.example.livedatademo.utils.DialogUtils;
 import com.example.livedatademo.utils.Utils;
-
-import java.util.List;
 
 public class MainActivity extends BaseFragmentActivity implements View.OnClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private Context mContext;
     private Activity mActivity;
-    private FrameLayout rlName, rlEmail;
-    private TextView tvHeader, tvNameLabel, tvEmailLabel, tvSave, tvViewData;
-    private ImageView ivBack, ivClearName, ivClearEmail, ivCheckMarkName, ivCheckMarkEmail;
+    private TextView tvSave, tvViewData;
+    private ImageView ivClearName, ivClearEmail, ivCheckMarkName, ivCheckMarkEmail;
     private EditText edtName, edtEmail;
     private Spinner mSpnrFavoriteColor;
 
@@ -54,7 +48,6 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         initializeViews();
         initializeHandlers();
         initializeListeners();
-        initializeRoomDb();
     }
 
     /**
@@ -70,18 +63,20 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         mUserSessionEntity = new UserSessionEntity();
 
         // initialize views
-        tvHeader = findViewById(R.id.tv_title);
+        TextView tvHeader = findViewById(R.id.tv_title);
         tvHeader.setText(getResources().getString(R.string.save_information));
 
-        rlName = findViewById(R.id.item_name);
-        rlEmail = findViewById(R.id.item_email);
+        FrameLayout rlName = findViewById(R.id.item_name);
+        FrameLayout rlEmail = findViewById(R.id.item_email);
         tvViewData = findViewById(R.id.tv_view_data);
         tvSave = findViewById(R.id.tv_save);
-        tvNameLabel = rlName.findViewById(R.id.tv_label);
+        // name
+        TextView tvNameLabel = rlName.findViewById(R.id.tv_label);
         edtName = rlName.findViewById(R.id.edt_input);
         ivClearName = rlName.findViewById(R.id.iv_clear);
         ivCheckMarkName = rlName.findViewById(R.id.iv_check_mark);
-        tvEmailLabel = rlEmail.findViewById(R.id.tv_label);
+        // email
+        TextView tvEmailLabel = rlEmail.findViewById(R.id.tv_label);
         edtEmail = rlEmail.findViewById(R.id.edt_input);
         ivClearEmail = rlEmail.findViewById(R.id.iv_clear);
         ivCheckMarkEmail = rlEmail.findViewById(R.id.iv_check_mark);
@@ -99,6 +94,8 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         // set text
         tvNameLabel.setText(getResources().getString(R.string.name));
         tvEmailLabel.setText(getResources().getString(R.string.email));
+        // set focus
+        edtName.requestFocus();
     }
 
     /**
@@ -119,10 +116,14 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         mSpnrFavoriteColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(TAG, "<onItemSelected> pos= " + position + " //id= " + id);
                 if (isInformationValid()) {
                     // set background
                     tvSave.setBackground(ContextCompat.getDrawable(mContext, R.drawable.pill_teal));
+                    // clear focus
+                    edtName.clearFocus();
+                    edtEmail.clearFocus();
+                    // hide keyboard
+                    Utils.hideKeyboard(mContext, mActivity.getWindow().getDecorView().getWindowToken());
                 } else {
                     // set background
                     tvSave.setBackground(ContextCompat.getDrawable(mContext, R.drawable.pill_grey));
@@ -239,28 +240,13 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
                         ivClearEmail.setVisibility(View.VISIBLE);
                         if (Utils.isValidEmail(edtEmail.getText().toString())) {
                             ivCheckMarkEmail.setVisibility(View.VISIBLE);
+                        } else {
+                            ivCheckMarkEmail.setVisibility(View.INVISIBLE);
                         }
                     }
                 } else {
                     // set visibility
                     ivClearEmail.setVisibility(View.GONE);
-                    ivCheckMarkEmail.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-    }
-
-    /**
-     * Method is used to add the given observer to the observers list
-     * within the lifespan for Room database
-     */
-    private void initializeRoomDb() {
-        // set observer
-        mUserSessionViewModel.getInfo().observe(this, new Observer<List<UserSessionEntity>>() {
-            @Override
-            public void onChanged(@Nullable List<UserSessionEntity> userSessionEntities) {
-                if (userSessionEntities != null && !userSessionEntities.isEmpty()) {
-                    mUserSessionEntity = userSessionEntities.get(0);
                 }
             }
         });
@@ -281,7 +267,8 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
                 }
                 break;
             case R.id.tv_view_data:
-
+                // add fragment
+                addFragment(R.id.rl_container, new InfoFragment());
                 break;
             case R.id.tv_save:
                 if (isInformationValid()) {
@@ -289,20 +276,16 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
                     mUserSessionEntity.setName(edtName.getText().toString());
                     mUserSessionEntity.setEmailAddress(edtEmail.getText().toString());
                     mUserSessionEntity.setFavoriteColor(mSpnrFavoriteColor.getSelectedItem().toString());
-                    if (mUserSessionViewModel.getInfo() == null) {
-                        mUserSessionViewModel.insert(mUserSessionEntity);
-                    } else {
-                        mUserSessionViewModel.update(mUserSessionEntity);
-                    }
+                    mUserSessionViewModel.insert(mUserSessionEntity);
 
                     // show dialog
                     DialogUtils.showDefaultOKAlert(mContext, getResources().getString(R.string.success),
-                            mContext.getResources().getString(R.string.successfully_saved_information),
+                            mContext.getResources().getString(R.string.information_successfully_saved),
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    // dismiss dialog
                                     DialogUtils.dismissDialog();
-
                                     // clear form
                                     clearForm();
                                 }
@@ -314,6 +297,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    // dismiss dialog
                                     DialogUtils.dismissDialog();
                                 }
                             });
@@ -349,6 +333,8 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         edtEmail.setText("");
         // set focus
         edtName.requestFocus();
+        // show keyboard
+        Utils.showKeyboard(mContext);
         // set selection
         mSpnrFavoriteColor.setSelection(0);
         // set visibility
@@ -358,5 +344,22 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         ivCheckMarkEmail.setVisibility(View.INVISIBLE);
         // set background
         tvSave.setBackground(ContextCompat.getDrawable(mContext, R.drawable.pill_grey));
+    }
+
+    @Override
+    public void onPause() {
+        // hide keyboard
+        Utils.hideKeyboard(mContext, mActivity.getWindow().getDecorView().getWindowToken());
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (edtName.hasFocus() || edtEmail.hasFocus()) {
+            // show keyboard
+            Utils.showKeyboard(mContext);
+        }
     }
 }
