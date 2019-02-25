@@ -39,14 +39,4 @@ public interface UserSessionDao {
     @Update
     void update(UserSessionEntity userSessionEntity);
 
-    /**
-     * Example of updating UserSessionEntity with specified position
-     *
-     * @param name  User information 'name'
-     * @param email User information 'email'
-     * @param color User information 'color'
-     * @param uid   The unique identifier that represents the query key
-     */
-    @Query("UPDATE user_session_table SET name = :name, email_address = :email, favorite_color = :color WHERE uid = :uid")
-    void update(String name, String email, String color, int uid);
 }

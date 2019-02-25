@@ -50,7 +50,7 @@ public class UserSessionViewModel extends AndroidViewModel {
         // want to think about it, you can set it as part of the insertion method
         Random rand = new Random();
         userSessionEntity.setUid(rand.nextInt(99999));
-        mUserSessionRepository.performDatabaseOperation(Enum.DatabaseOperation.INSERT, userSessionEntity);
+        mUserSessionRepository.getInstance().performDatabaseOperation(Enum.DatabaseOperation.INSERT, userSessionEntity);
     }
 
     /**
@@ -59,20 +59,20 @@ public class UserSessionViewModel extends AndroidViewModel {
      * @param userSessionEntity User session entity
      */
     public void update(@NonNull UserSessionEntity userSessionEntity) {
-        mUserSessionRepository.performDatabaseOperation(Enum.DatabaseOperation.UPDATE, userSessionEntity);
+        mUserSessionRepository.getInstance().performDatabaseOperation(Enum.DatabaseOperation.UPDATE, userSessionEntity);
     }
 
     /**
      * Method is usd to perform DELETE operation
      */
     public void delete(@NonNull UserSessionEntity userSessionEntity) {
-        mUserSessionRepository.performDatabaseOperation(Enum.DatabaseOperation.DELETE, userSessionEntity);
+        mUserSessionRepository.getInstance().performDatabaseOperation(Enum.DatabaseOperation.DELETE, userSessionEntity);
     }
 
     /**
      * Method is used to perform DELETE operation for all user session entries
      */
     public void deleteAll() {
-        mUserSessionRepository.performDatabaseOperation(Enum.DatabaseOperation.DELETE, null);
+        mUserSessionRepository.getInstance().performDatabaseOperation(Enum.DatabaseOperation.DELETE, null);
     }
 }
