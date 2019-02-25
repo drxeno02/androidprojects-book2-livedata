@@ -22,7 +22,7 @@
         android:layout_marginRight="@dimen/scaling_20"
         android:orientation="vertical">
 
-        <!-- favorite color label -->
+        <!-- information description -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:layout_margin="@dimen/scaling_10"
             android:background="@color/md_grey_600" />
 
-        <!-- trip history list -->
+        <!-- recycler information -->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_info"
             android:layout_width="match_parent"
@@ -45,6 +45,18 @@
             android:layout_marginTop="@dimen/scaling_10"
             android:clipToPadding="false"
             android:scrollingCache="false" />
+
+        <!-- no data available -->
+        <TextView
+            android:id="@+id/tv_no_data_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/no_data"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_20"
+            android:visibility="gone" />
 
     </LinearLayout>
 

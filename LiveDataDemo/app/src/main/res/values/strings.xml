@@ -4,14 +4,22 @@
     <!-- form -->
     <string name="favorite_color">Favorite Color</string>
     <string name="save">Save</string>
+    <string name="save_edits">Save Edits</string>
     <string name="save_information">Save Information</string>
     <string name="view_information">View Information</string>
+    <string name="edit_information">Edit Information</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="view_data">View Data</string>
+    <string name="no_data">No Data Available</string>
     <string name="live_data_description">The information below is retrieved from our Room database.
         We are able to witness updates LIVE by modifying any of the stored data. LiveData will notify
         the observer of these changes so that we can update the list of information.</string>
+    <string name="delete_entry">Delete Entry</string>
+    <string name="delete_entry_description">Deleting an item will remove it from our Room database.
+        Would you like to delete this item?</string>
+    <string name="edit_entry_description">You can edit any of the information below and see
+        the changes instantly due to LiveData notifying the observer of these changes.</string>
 
     <!-- dialog -->
     <string name="yes">Yes</string>
@@ -21,6 +29,7 @@
     <string name="must_fill_out_information">Must fill out all information to save data.</string>
     <string name="success">Success</string>
     <string name="information_successfully_saved">Information successfully saved! Click on the View Data button to see your results.</string>
+    <string name="information_successfully_edited">Information successfully edited!</string>
 
     <!-- favorite color options -->
     <string name="select_favorite_color">Select Favorite Color</string>

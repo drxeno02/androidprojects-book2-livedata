@@ -14,9 +14,8 @@ public class Utils {
 
     // click control threshold
     private static final int CLICK_THRESHOLD = 250;
-    private static long mLastClickTime;
-
     private static final long ANIM_DURATION_SHORT_200 = 200; // milliseconds
+    private static long mLastClickTime;
     private static InputMethodManager imm;
 
     /**

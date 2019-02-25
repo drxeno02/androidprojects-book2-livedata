@@ -15,8 +15,6 @@ import com.example.livedatademo.R;
 public class DialogUtils {
 
     private static Dialog mDialog;
-    private static ProgressDialog mProgressDialog; // display during processing requests/responses
-
     // click listener for default dialog
     private static final DialogInterface.OnClickListener mDefaultListener = new DialogInterface.OnClickListener() {
         @Override
@@ -24,6 +22,7 @@ public class DialogUtils {
             dismissDialog();
         }
     };
+    private static ProgressDialog mProgressDialog; // display during processing requests/responses
 
     /**
      * Method is used to display progress dialog. Call when processing requests/responses

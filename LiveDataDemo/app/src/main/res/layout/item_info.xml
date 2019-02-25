@@ -56,15 +56,27 @@
 
         </LinearLayout>
 
-        <!-- edit info -->
+        <!-- delete info -->
         <ImageView
-            android:id="@+id/iv_edit"
-            android:layout_width="@dimen/scaling_36"
-            android:layout_height="@dimen/scaling_36"
+            android:id="@+id/iv_delete"
+            android:layout_width="@dimen/scaling_30"
+            android:layout_height="@dimen/scaling_30"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/green_check_mark_icon" />
+            android:src="@drawable/trash_icon" />
+
+        <!-- edit info -->
+        <ImageView
+            android:id="@+id/iv_edit"
+            android:layout_width="@dimen/scaling_30"
+            android:layout_height="@dimen/scaling_30"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/scaling_10"
+            android:layout_marginRight="@dimen/scaling_10"
+            android:layout_toStartOf="@+id/iv_delete"
+            android:layout_toLeftOf="@+id/iv_delete"
+            android:src="@drawable/edit_icon" />
 
     </RelativeLayout>
 

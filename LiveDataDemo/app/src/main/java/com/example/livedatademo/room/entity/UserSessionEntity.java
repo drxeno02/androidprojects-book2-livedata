@@ -19,7 +19,7 @@ public class UserSessionEntity {
     private String emailAddress;
 
     @ColumnInfo(name = "favorite_color")
-    private String favoriteColor;
+    private int favoriteColorPos;
 
     /**
      * Getter for retrieving primary key
@@ -76,21 +76,21 @@ public class UserSessionEntity {
     }
 
     /**
-     * Getter for retrieving favorite color
+     * Getter for retrieving favorite color position
      *
-     * @return Favorite color
+     * @return Favorite color position
      */
-    public String getFavoriteColor() {
-        return favoriteColor;
+    public int getFavoriteColorPos() {
+        return favoriteColorPos;
     }
 
     /**
-     * Setter for setting favorite color
+     * Setter for setting favorite color position
      *
-     * @param favoriteColor Favorite color
+     * @param favoriteColorPos Favorite color position
      */
-    public void setFavoriteColor(String favoriteColor) {
-        this.favoriteColor = favoriteColor;
+    public void setFavoriteColorPos(int favoriteColorPos) {
+        this.favoriteColorPos = favoriteColorPos;
     }
 
 }

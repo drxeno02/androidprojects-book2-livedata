@@ -16,8 +16,6 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "room.flex.db";
     private static volatile AppDatabase mInstance;
 
-    public abstract UserSessionDao userSessionDao();
-
     /**
      * This method should be called in the Application so the context parameter can
      * be set to application context since this object will live during the entire
@@ -50,4 +48,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public static void destroy() {
         mInstance = null;
     }
+
+    public abstract UserSessionDao userSessionDao();
 }

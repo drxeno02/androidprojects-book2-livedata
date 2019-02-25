@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -15,10 +14,22 @@
         <!-- header -->
         <include
             android:id="@+id/header"
-
             layout="@layout/item_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <!-- information description -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/scaling_20"
+            android:layout_marginLeft="@dimen/scaling_20"
+            android:layout_marginTop="@dimen/scaling_30"
+            android:layout_marginEnd="@dimen/scaling_20"
+            android:layout_marginRight="@dimen/scaling_20"
+            android:text="@string/edit_entry_description"
+            android:textColor="@color/md_grey_600"
+            android:textSize="@dimen/font_size_16" />
 
         <!-- name section -->
         <include
@@ -81,45 +92,23 @@
             android:scrollbars="none"
             android:spinnerMode="dropdown" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <!-- edit button -->
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="@dimen/scaling_140"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/scaling_60">
-
-            <!-- save button -->
-            <TextView
-                android:id="@+id/tv_view_data"
-                android:layout_width="@dimen/scaling_120"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/scaling_10"
-                android:layout_marginRight="@dimen/scaling_10"
-                android:layout_toStartOf="@+id/tv_save"
-                android:layout_toLeftOf="@+id/tv_save"
-                android:background="@drawable/pill_teal"
-                android:gravity="center"
-                android:padding="@dimen/scaling_10"
-                android:text="@string/view_data"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_size_18" />
-
-            <!-- save button -->
-            <TextView
-                android:id="@+id/tv_save"
-                android:layout_width="@dimen/scaling_120"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/scaling_10"
-                android:layout_marginRight="@dimen/scaling_10"
-                android:background="@drawable/pill_grey"
-                android:gravity="center"
-                android:padding="@dimen/scaling_10"
-                android:text="@string/save"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_size_18" />
-
-        </RelativeLayout>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/scaling_60"
+            android:layout_marginEnd="@dimen/scaling_10"
+            android:layout_marginRight="@dimen/scaling_10"
+            android:background="@drawable/pill_grey"
+            android:gravity="center"
+            android:padding="@dimen/scaling_10"
+            android:text="@string/save_edits"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_18" />
 
     </LinearLayout>
 

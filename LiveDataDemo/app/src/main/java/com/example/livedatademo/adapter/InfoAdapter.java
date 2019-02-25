@@ -3,6 +3,7 @@ package com.example.livedatademo.adapter;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -18,17 +19,25 @@ import android.widget.TextView;
 import com.example.livedatademo.R;
 import com.example.livedatademo.room.entity.UserSessionEntity;
 import com.example.livedatademo.room.viewmodel.UserSessionViewModel;
+import com.example.livedatademo.utils.DialogUtils;
 
 import java.util.List;
 
 public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
 
+    // custom callback
+    private static OnEditListener mOnEditListener;
     private Context mContext;
-
     // Room database
     private UserSessionViewModel mUserSessionViewModel;
     private List<UserSessionEntity> alUserSessionEntity;
 
+    /**
+     * Constructor
+     *
+     * @param context             Interface to global information about an application environment.
+     * @param userSessionEntities List of user entities that contains user information e.g. name, email, ect
+     */
     public InfoAdapter(@NonNull Context context, @Nullable List<UserSessionEntity> userSessionEntities) {
         mContext = context;
         mUserSessionViewModel = ViewModelProviders.of((FragmentActivity) mContext).get(UserSessionViewModel.class);
@@ -36,6 +45,15 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
 
         // initialize Room db
         initializeRoomDb();
+    }
+
+    /**
+     * Method is used to set callback for when edit button is clicked
+     *
+     * @param listener
+     */
+    public static void onEditListener(OnEditListener listener) {
+        mOnEditListener = listener;
     }
 
     /**
@@ -72,14 +90,33 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
         holder.tvEmail.setText(alUserSessionEntity.get(position).getEmailAddress());
 
         // set favorite color
+        String[] arryFavoriteColors = mContext.getResources().getStringArray(R.array.array_menu_options);
         holder.ivFavoriteColor.setColorFilter(ContextCompat.getColor(mContext,
-                getFavoriteColor(alUserSessionEntity.get(position).getFavoriteColor())));
+                getFavoriteColor(arryFavoriteColors[alUserSessionEntity.get(position).getFavoriteColorPos()])));
 
         // set click listener
         holder.ivEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // set visibility
+                if (mOnEditListener != null) {
+                    mOnEditListener.onEdit(alUserSessionEntity.get(index).getUid());
+                }
+            }
+        });
+        holder.ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // show dialog
+                DialogUtils.showYesNoAlert(mContext, mContext.getResources().getString(R.string.delete_entry),
+                        mContext.getResources().getString(R.string.delete_entry_description),
+                        null, null, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // delete item from Room database
+                                mUserSessionViewModel.delete(alUserSessionEntity.get(index));
+                            }
+                        }, null);
 
             }
         });
@@ -91,7 +128,9 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
     }
 
     /**
-     * @param userSessionEntities
+     * Update user list of user session data
+     *
+     * @param userSessionEntities List of user entities that contains user information e.g. name, email, ect
      */
     public void updateData(@NonNull List<UserSessionEntity> userSessionEntities) {
         if (!userSessionEntities.isEmpty()) {
@@ -132,6 +171,13 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
     }
 
     /**
+     * Interface to track when edit button is clicked
+     */
+    public interface OnEditListener {
+        void onEdit(int selectedUid);
+    }
+
+    /**
      * View holder class
      * <p>A ViewHolder describes an item view and metadata about its place within the RecyclerView</p>
      */
@@ -139,7 +185,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
 
         private final LinearLayout llWrapper;
         private final TextView tvName, tvEmail;
-        private final ImageView ivFavoriteColor, ivEdit;
+        private final ImageView ivFavoriteColor, ivEdit, ivDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -149,7 +195,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
             tvEmail = itemView.findViewById(R.id.tv_email);
             ivFavoriteColor = itemView.findViewById(R.id.iv_favorite_color);
             ivEdit = itemView.findViewById(R.id.iv_edit);
-
+            ivDelete = itemView.findViewById(R.id.iv_delete);
         }
     }
 }

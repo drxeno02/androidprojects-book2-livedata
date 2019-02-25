@@ -63,9 +63,16 @@ public class UserSessionViewModel extends AndroidViewModel {
     }
 
     /**
-     * Method is used to perform DELETE operation
+     * Method is usd to perform DELETE operation
      */
-    public void delete() {
+    public void delete(@NonNull UserSessionEntity userSessionEntity) {
+        mUserSessionRepository.performDatabaseOperation(Enum.DatabaseOperation.DELETE, userSessionEntity);
+    }
+
+    /**
+     * Method is used to perform DELETE operation for all user session entries
+     */
+    public void deleteAll() {
         mUserSessionRepository.performDatabaseOperation(Enum.DatabaseOperation.DELETE, null);
     }
 }
