@@ -106,9 +106,10 @@ public class EditFragment extends BaseFragment implements View.OnClickListener {
         // set text
         tvNameLabel.setText(getResources().getString(R.string.name));
         tvEmailLabel.setText(getResources().getString(R.string.email));
-        // set focus
-        edtName.requestFocus();
-        edtName.setSelectAllOnFocus(true);
+
+        // clear focus (default)
+        edtName.clearFocus();
+        edtEmail.clearFocus();
     }
 
     /**
@@ -147,8 +148,13 @@ public class EditFragment extends BaseFragment implements View.OnClickListener {
                             // set visibility
                             ivClearName.setVisibility(View.VISIBLE);
                             ivCheckMarkName.setVisibility(View.VISIBLE);
-                            ivClearEmail.setVisibility(View.VISIBLE);
                             ivCheckMarkEmail.setVisibility(View.VISIBLE);
+                            // set focus
+                            edtName.requestFocus();
+                            edtName.setSelectAllOnFocus(true);
+                            edtEmail.setSelectAllOnFocus(true);
+                            // show keyboard
+                            Utils.showKeyboard(mContext);
                         }
                     }
                 }
@@ -319,24 +325,26 @@ public class EditFragment extends BaseFragment implements View.OnClickListener {
                 }
                 break;
             case R.id.tv_edit:
-                // update user SQLite database
-                mUserSessionEntity.setName(edtName.getText().toString());
-                mUserSessionEntity.setEmailAddress(edtEmail.getText().toString());
-                mUserSessionEntity.setFavoriteColorPos(mSpnrFavoriteColor.getSelectedItemPosition());
-                mUserSessionViewModel.update(mUserSessionEntity);
+                if (isInformationValid()) {
+                    // update user SQLite database
+                    mUserSessionEntity.setName(edtName.getText().toString());
+                    mUserSessionEntity.setEmailAddress(edtEmail.getText().toString());
+                    mUserSessionEntity.setFavoriteColorPos(mSpnrFavoriteColor.getSelectedItemPosition());
+                    mUserSessionViewModel.update(mUserSessionEntity);
 
-                // show dialog
-                DialogUtils.showDefaultOKAlert(mContext, getResources().getString(R.string.success),
-                        mContext.getResources().getString(R.string.information_successfully_edited),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // dismiss dialog
-                                DialogUtils.dismissDialog();
-                                popBackStack();
-                                remove();
-                            }
-                        });
+                    // show dialog
+                    DialogUtils.showDefaultOKAlert(mContext, getResources().getString(R.string.success),
+                            mContext.getResources().getString(R.string.information_successfully_edited),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // dismiss dialog
+                                    DialogUtils.dismissDialog();
+                                    popBackStack();
+                                    remove();
+                                }
+                            });
+                }
                 break;
             default:
                 break;
